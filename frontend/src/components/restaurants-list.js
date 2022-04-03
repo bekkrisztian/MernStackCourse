@@ -39,7 +39,7 @@ const RestaurantsList = (props) => {
         setSearchName(searchName);
     };
 
-    const onChangeSearcZip = (e) => {
+    const onChangeSearchZip = (e) => {
         const searchZip = e.target.value;
         setSerarchZip(searchZip);
     };
@@ -52,10 +52,74 @@ const RestaurantsList = (props) => {
     const refreshList = () => {
         retriveRestaurants();
     };
+    
+    const find = (query, by) => {
+        RestaurantDataService.find(query, by)
+            .then(response => {
+                console.log(response.data);
+                setRestaurants(response.data.restaurants);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
+
+    const findByName = () => {
+        find(searchName, "name");
+    };
+
+    const findByZip = () => {
+        find(searchZip, "zipcode");
+    };
+
+    const findByCuisine = () => {
+        if (searchCuisine == "All Cuisines") {
+            refreshList();
+        } else {
+            find(searchCuisine, "cuisine");
+        }
+    };
 
     return (
-        <div className="App">
-            Hello World.
+        <div>
+            <div className="row pb-1">
+                <div className="input-group col-lg-4">
+                    <input 
+                        type="text"
+                        className="form-control"
+                        placeholder="Search by name"
+                        value={searchName}
+                        onChange={onChangeSearchName}
+                    />
+                    <div className="input-group-append">
+                        <button 
+                            className="btn btn-outline-secondary"
+                            type="button"
+                            onClick={findByName}
+                        >
+                            Search
+                        </button>
+                    </div>
+                </div>
+                <div className="input-group col-lg-4">
+                    <input 
+                        type="text"
+                        className="form-control"
+                        placeholder="Search by zip"
+                        value={searchZip}
+                        onChange={onChangeSearchZip}
+                    />
+                    <div className="input-group-append">
+                        <button 
+                            className="btn btn-outline-secondary"
+                            type="button"
+                            onClick={findByZip}
+                        >
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
