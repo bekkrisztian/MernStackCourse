@@ -119,9 +119,64 @@ const RestaurantsList = (props) => {
                         </button>
                     </div>
                 </div>
+                <div className="input-group col-lg-4">
+                    <select onChange={onChangeSearchCuisine}>
+                    {cuisines.map(cuisine => {
+                        return (
+                            <option value={cuisine}> {cuisine.substr(0, 20)} </option>
+                        )
+                    })}
+                    </select>
+                    <div className="input-group-append">
+                        <button 
+                            className="btn btn-outline-secondary"
+                            type="button"
+                            onClick={findByCuisine}
+                        >
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                {
+                    restaurants.map((restaurant) => {
+                        const address = `${restaurant.address.building} ${restaurant.address.zipcode}`;
+                        return (
+                            <div className="col-lg-4 pb-1">
+                                <div className="card">
+                                    <div className="card-body">
+                                        <h5 className="card-title">
+                                            {restaurant.name}
+                                        </h5>
+                                        <p className="card-text">
+                                            <strong>Cusine: </strong> {restaurant.cusine}
+                                            <strong>Address: </strong> {address}
+                                        </p>
+                                        <div className="row">
+                                            <Link 
+                                                to={"/restaurants" + restaurant._id}
+                                                className="btn btn-primary col-lg-5 mx=1 mb-1"
+                                            >
+                                                View Reviews
+                                            </Link>
+                                            <a 
+                                                target="_blank" 
+                                                href={"https://www.google.com/maps/place/" + address}
+                                                className="btn btn-primary col-lg-5 mx=1 mb-1"
+                                            >
+                                                View Map
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })
+                }
             </div>
         </div>
     );
-}
+};
 
 export default RestaurantsList;
