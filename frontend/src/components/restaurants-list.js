@@ -141,7 +141,7 @@ const RestaurantsList = (props) => {
             <div className="row">
                 {
                     restaurants.map((restaurant) => {
-                        const address = `${restaurant.address.building} ${restaurant.address.zipcode}`;
+                        const address = `${restaurant.address.building} ${restaurant.address.street}, ${restaurant.address.zipcode}`;
                         return (
                             <div className="col-lg-4 pb-1">
                                 <div className="card">
@@ -163,7 +163,7 @@ const RestaurantsList = (props) => {
                                             <a 
                                                 target="_blank" 
                                                 href={"https://www.google.com/maps/place/" + address}
-                                                className="btn btn-primary col-lg-5 mx=1 mb-1"
+                                                className="btn btn-primary col-lg-5 mx=1 mb-1" rel="noreferrer"
                                             >
                                                 View Map
                                             </a>
