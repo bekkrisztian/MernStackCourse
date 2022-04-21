@@ -78,7 +78,7 @@ const Restaurant = (props) => {
                                                                 <a onClick={() => deleteReview(review._id, index)} className="btn btn-delete"></a>
                                                                 <Link
                                                                     to={{
-                                                                        pathname: "restaurants/" + id + "/review",
+                                                                        pathname: "review",
                                                                         state: {
                                                                             currentReview: review
                                                                         }

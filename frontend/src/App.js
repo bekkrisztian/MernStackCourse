@@ -49,9 +49,7 @@ function App() {
                     <Route exact path="/restaurants" element={<RestaurantsList />} />
                     <Route
                         path="/restaurants/:id/review"
-                        render={(props) => {
-                            <AddReview {...props} user={user} />
-                        }} 
+                        element={<AddReview user={user} />} 
                     />
                     <Route
                         exact
@@ -60,10 +58,7 @@ function App() {
                     />
                     <Route
                         path="/login"
-                        element={<Login />}
-                        render={(props) => {
-                            <Login {...props} user={user} />
-                        }} 
+                        element={<Login login={login} />} 
                     />
                 </Routes>
             </div>
