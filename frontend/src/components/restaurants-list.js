@@ -123,7 +123,7 @@ const RestaurantsList = (props) => {
                     <select onChange={onChangeSearchCuisine}>
                     {cuisines.map(cuisine => {
                         return (
-                            <option value={cuisine}> {cuisine.substr(0, 20)} </option>
+                            <option key={cuisine.toString()} value={cuisine}> {cuisine.substr(0, 20)} </option>
                         )
                     })}
                     </select>
@@ -143,7 +143,7 @@ const RestaurantsList = (props) => {
                     restaurants.map((restaurant) => {
                         const address = `${restaurant.address.building} ${restaurant.address.street}, ${restaurant.address.zipcode}`;
                         return (
-                            <div className="col-lg-4 pb-1">
+                            <div className="col-lg-4 pb-1" key={restaurant._id}>
                                 <div className="card">
                                     <div className="card-body">
                                         <h5 className="card-title">
@@ -155,15 +155,15 @@ const RestaurantsList = (props) => {
                                         </p>
                                         <div className="row">
                                             <Link 
-                                                to={"/restaurants" + restaurant._id}
-                                                className="btn btn-primary col-lg-5 mx=1 mb-1"
+                                                to={"/restaurants/" + restaurant._id}
+                                                className="btn btn-primary col-lg-5 mx-1 mb-1"
                                             >
                                                 View Reviews
                                             </Link>
                                             <a 
                                                 target="_blank" 
                                                 href={"https://www.google.com/maps/place/" + address}
-                                                className="btn btn-primary col-lg-5 mx=1 mb-1" rel="noreferrer"
+                                                className="btn btn-primary col-lg-5 mx-1 mb-1" rel="noreferrer"
                                             >
                                                 View Map
                                             </a>

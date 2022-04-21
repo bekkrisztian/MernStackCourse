@@ -54,10 +54,9 @@ function App() {
                         }} 
                     />
                     <Route
+                        exact
                         path="/restaurants/:id"
-                        render={(props) => {
-                            <Restaurant {...props} user={user} />
-                        }} 
+                        element={<Restaurant user={user} />}
                     />
                     <Route
                         path="/login"
