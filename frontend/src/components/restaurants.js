@@ -29,8 +29,8 @@ const Restaurant = (props) => {
     }, [id]);
 
     const deleteReview = (reviewId, index) => {
-        RestaurantDataService.deleteReview(reviewId).
-            then(response => {
+        RestaurantDataService.deleteReview(reviewId, props.user.id)
+            .then(response => {
                 setRestaurant(prevState => {
                     prevState.reviews.splice(index, 1);
                     return (
@@ -75,7 +75,7 @@ const Restaurant = (props) => {
                                                         </p>
                                                         {props.user && props.user.id === review.user_id && 
                                                             <div className="row">
-                                                                <a onClick={() => deleteReview(review._id, index)} className="btn btn-delete"></a>
+                                                                <a onClick={() => deleteReview(review._id, index)} className="btn btn-primary col-lg-5 mx-1 mb-1">Delete</a>
                                                                 <Link
                                                                     to={{
                                                                         pathname: "review",
