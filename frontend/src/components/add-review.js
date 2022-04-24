@@ -8,10 +8,13 @@ const AddReview = props => {
     let initialReviewState = "";
     let editing = false;
 
-    if (location.state && props.location.state.currentReview) {
+    console.log(location);
+
+    if (location.state && location.state.currentReview) {
         editing = true;
-        initialReviewState = props.location.state.currentReview.text;
+        initialReviewState = location.state.currentReview.text;
     }
+
 
     const [review, setReview] = useState(initialReviewState);
     const [submitted, setSubmitted] = useState(false);
